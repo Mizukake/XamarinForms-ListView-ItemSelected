@@ -6,18 +6,28 @@ namespace ItemSelectedSample
 {
 	public partial class ItemSelectedSamplePage : ContentPage
 	{
-		public List<ListItem> Source { set; get; }
+        private List<ListItem> _Source;
+		public List<ListItem> Source
+        {
+            get { return _Source; }
+            set
+            {
+                _Source = value;
+                OnPropertyChanged();
+            }
+        }
+
 		private ListItem _selectItem;
-		public ListItem SelectItem 
-		{ 
-			set 
+		public ListItem SelectItem
+        {
+            get { return _selectItem; }
+            set 
 			{
 				_selectItem = value;
 				//何か処理する
 				_selectItem = null;
-				OnPropertyChanged("SelectItem");
+				OnPropertyChanged();
 			}
-			get { return _selectItem; }
 		}
 		public ItemSelectedSamplePage()
 		{
@@ -31,7 +41,6 @@ namespace ItemSelectedSample
 				new ListItem{Name="ほげ４"},
 				new ListItem{Name="ほげ５"},
 			};
-			OnPropertyChanged("Source");
 		}
 	}
 
